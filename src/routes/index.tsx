@@ -66,8 +66,7 @@ type Venue = {
   color: "gold" | "silver" | "red";
 };
 
-const venues: Venue[] = [
-  {
+const ironNord: Venue = {
     name: "Iron Nord",
     area: "Mar Mikhael",
     category: "Strength",
@@ -77,8 +76,9 @@ const venues: Venue[] = [
     image: ironImage,
     imageAlt: "Industrial strength gym with training rigs and kettlebells",
     color: "gold",
-  },
-  {
+  };
+
+const formPilates: Venue = {
     name: "Form Pilates",
     area: "Beirut Waterfront",
     category: "Pilates",
@@ -88,8 +88,9 @@ const venues: Venue[] = [
     image: pilatesImage,
     imageAlt: "Bright Pilates studio overlooking Beirut",
     color: "silver",
-  },
-  {
+  };
+
+const apexCalisthenics: Venue = {
     name: "Apex Calisthenics",
     area: "Achrafieh",
     category: "Calisthenics",
@@ -99,8 +100,9 @@ const venues: Venue[] = [
     image: apexImage,
     imageAlt: "Rooftop calisthenics training at sunset",
     color: "red",
-  },
-];
+  };
+
+const venues: Venue[] = [ironNord, formPilates, apexCalisthenics];
 
 const categories = ["All", "Strength", "Pilates", "Calisthenics"];
 
@@ -224,9 +226,9 @@ function AccessView({
           <div className="radar-ring radar-ring-inner" />
           <div className="radar-sweep" />
           <div className="radar-you"><LocateFixed className="size-3" /></div>
-          <MapPinButton label="Iron Nord" distance="400m" position="pin-one" tone="success" onClick={() => onVenueSelect(venues[0])} />
-          <MapPinButton label="Apex" distance="900m" position="pin-two" tone="danger" onClick={() => onVenueSelect(venues[2])} />
-          <MapPinButton label="Form" distance="1.1km" position="pin-three" tone="silver" onClick={() => onVenueSelect(venues[1])} />
+          <MapPinButton label="Iron Nord" distance="400m" position="pin-one" tone="success" onClick={() => onVenueSelect(ironNord)} />
+          <MapPinButton label="Apex" distance="900m" position="pin-two" tone="danger" onClick={() => onVenueSelect(apexCalisthenics)} />
+          <MapPinButton label="Form" distance="1.1km" position="pin-three" tone="silver" onClick={() => onVenueSelect(formPilates)} />
           <div className="absolute bottom-3 left-3 rounded-md border border-border bg-background/80 px-2 py-1 font-mono text-[8px] text-muted-foreground backdrop-blur-md">BEIRUT · 33.8938° N</div>
         </div>
       </section>
