@@ -133,6 +133,23 @@ function FitPulseApp() {
               onVenueSelect={startAccess}
             />
           )}
+          {tab === "coach" && (
+            <CoachAgent
+              onUnlock={(venueName) => {
+                const match = venues.find((venue) => venue.name === venueName);
+                startAccess(
+                  match ?? {
+                    ...ironNord,
+                    name: venueName,
+                    area: "Gemmayze",
+                    category: "Strength",
+                    distance: "700 m",
+                    spots: "Coach hours open",
+                  },
+                );
+              }}
+            />
+          )}
           {tab === "train" && <TrainView />}
           {tab === "wallet" && <WalletView />}
           {tab === "ranks" && <RanksView />}
