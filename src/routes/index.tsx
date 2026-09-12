@@ -53,7 +53,7 @@ export const Route = createFileRoute("/")({
   component: FitPulseApp,
 });
 
-type TabId = "access" | "train" | "wallet" | "ranks" | "profile";
+type TabId = "access" | "coach" | "train" | "wallet" | "ranks" | "profile";
 type Venue = {
   name: string;
   area: string;
@@ -131,6 +131,23 @@ function FitPulseApp() {
               filteredVenues={filteredVenues}
               onCategoryChange={setCategory}
               onVenueSelect={startAccess}
+            />
+          )}
+          {tab === "coach" && (
+            <CoachAgent
+              onUnlock={(venueName) => {
+                const match = venues.find((venue) => venue.name === venueName);
+                startAccess(
+                  match ?? {
+                    ...ironNord,
+                    name: venueName,
+                    area: "Gemmayze",
+                    category: "Strength",
+                    distance: "700 m",
+                    spots: "Coach hours open",
+                  },
+                );
+              }}
             />
           )}
           {tab === "train" && <TrainView />}
