@@ -53,7 +53,7 @@ export const Route = createFileRoute("/")({
   component: FitPulseApp,
 });
 
-type TabId = "access" | "train" | "wallet" | "ranks" | "profile";
+type TabId = "access" | "coach" | "train" | "wallet" | "ranks" | "profile";
 type Venue = {
   name: string;
   area: string;
