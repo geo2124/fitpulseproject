@@ -30,6 +30,7 @@ import apexImage from "@/assets/fitpulse-apex.jpg";
 import pilatesImage from "@/assets/fitpulse-form-pilates.jpg";
 import ironImage from "@/assets/fitpulse-iron-nord.jpg";
 import profileImage from "@/assets/fitpulse-profile.jpg";
+import { CoachAgent } from "@/components/coach-agent";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -511,6 +512,7 @@ function AccessSheet({ venue, granted, onClose, onGrant }: { venue: Venue; grant
 function BottomNavigation({ tab, onTabChange }: { tab: TabId; onTabChange: (tab: TabId) => void }) {
   const tabs: Array<{ id: TabId; label: string; icon: React.ReactNode }> = [
     { id: "access", label: "Access", icon: <KeyRound /> },
+    { id: "coach", label: "Coach", icon: <Sparkles /> },
     { id: "train", label: "Train", icon: <Dumbbell /> },
     { id: "wallet", label: "Wallet", icon: <WalletCards /> },
     { id: "ranks", label: "Ranks", icon: <Trophy /> },
@@ -518,7 +520,7 @@ function BottomNavigation({ tab, onTabChange }: { tab: TabId; onTabChange: (tab:
   ];
   return (
     <nav className="bottom-nav" aria-label="Primary navigation">
-      <div className="grid grid-cols-5">
+      <div className="grid grid-cols-6">
         {tabs.map((item) => (
           <Button key={item.id} variant="ghost" onClick={() => onTabChange(item.id)} className={`nav-item ${tab === item.id ? "nav-active" : ""}`} aria-current={tab === item.id ? "page" : undefined}>
             {item.icon}<span>{item.label}</span>
