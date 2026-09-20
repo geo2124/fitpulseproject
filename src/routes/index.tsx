@@ -31,6 +31,8 @@ import pilatesImage from "@/assets/fitpulse-form-pilates.jpg";
 import ironImage from "@/assets/fitpulse-iron-nord.jpg";
 import profileImage from "@/assets/fitpulse-profile.jpg";
 import { CoachAgent } from "@/components/coach-agent";
+import { HeadToHead } from "@/components/head-to-head";
+import { SessionExplorer } from "@/components/session-explorer";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -333,15 +335,18 @@ function ClassRow({ time, title, venue, spots }: { time: string; title: string; 
 }
 
 function TrainView() {
-  const [trainerMode, setTrainerMode] = useState(true);
+  const [mode, setMode] = useState<"trainer" | "personal" | "explore">("trainer");
   return (
     <div className="animate-rise px-4 pt-5">
       <PageIntro eyebrow="Training desk" title="Your week in motion" copy="Book sessions for yourself or coordinate client access across the network." />
       <div className="segmented mt-5">
-        <Button variant={trainerMode ? "default" : "ghost"} onClick={() => setTrainerMode(true)}>Trainer mode</Button>
-        <Button variant={!trainerMode ? "default" : "ghost"} onClick={() => setTrainerMode(false)}>Personal</Button>
+        <Button variant={mode === "trainer" ? "default" : "ghost"} onClick={() => setMode("trainer")}>Trainer</Button>
+        <Button variant={mode === "personal" ? "default" : "ghost"} onClick={() => setMode("personal")}>Personal</Button>
+        <Button variant={mode === "explore" ? "default" : "ghost"} onClick={() => setMode("explore")}>Explore</Button>
       </div>
-      {trainerMode ? <TrainerDashboard /> : <PersonalSchedule />}
+      {mode === "trainer" && <TrainerDashboard />}
+      {mode === "personal" && <PersonalSchedule />}
+      {mode === "explore" && <SessionExplorer />}
     </div>
   );
 }
